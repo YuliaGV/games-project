@@ -1,0 +1,10 @@
+[
+  { "word": "León", "category": "Animales" },
+  { "word": "Elefante", "category": "Animales" },
+  { "word": "Colombia", "category": "Países" },
+  { "word": "Argentina", "category": "Países" },
+  { "word": "Led Zeppelin", "category": "Bandas de Rock" },
+  { "word": "Pink Floyd", "category": "Bandas de Rock" },
+  { "word": "Homer Simpson", "category": "Personajes de Los Simpson" },
+  { "word": "Bart Simpson", "category": "Personajes de Los Simpson" }
+]
