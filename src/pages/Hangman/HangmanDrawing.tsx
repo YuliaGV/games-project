@@ -93,6 +93,8 @@ const BaseBar = styled('div')(() => ({
     background: 'black',
 }));
 
+const BodyParts  = [Head, Body, RightArm, LeftArm, RightLeg, LeftLeg];
+
 
 
 export { Head, Body, RightArm, LeftArm, RightLeg, LeftLeg };
@@ -102,15 +104,23 @@ const HangmanDrawingContainer = styled('div')(() => ({
     position: 'relative',
 }));
 
+type HangmanDrawingProps = {
+    numberOfGuesses: number;
+}
 
 
-function HangmanDrawing() {
+function HangmanDrawing( {numberOfGuesses}: HangmanDrawingProps) {
   return (
     <HangmanDrawingContainer>
+
         <TopBar />
         <HorizontalBar />
         <VerticalBar />
         <BaseBar />
+
+        {BodyParts.slice(0, numberOfGuesses).map((Part, index) => (
+            <Part key={index} />
+        ))}
         
         
     </HangmanDrawingContainer>

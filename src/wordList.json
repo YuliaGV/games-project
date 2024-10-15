@@ -1,10 +1,24 @@
 [
-  { "word": "León", "category": "Animales" },
-  { "word": "Elefante", "category": "Animales" },
-  { "word": "Colombia", "category": "Países" },
-  { "word": "Argentina", "category": "Países" },
-  { "word": "Led Zeppelin", "category": "Bandas de Rock" },
-  { "word": "Pink Floyd", "category": "Bandas de Rock" },
-  { "word": "Homer Simpson", "category": "Personajes de Los Simpson" },
-  { "word": "Bart Simpson", "category": "Personajes de Los Simpson" }
+  { "word": "JIRAFA", "category": "Animales" },
+  { "word": "ELEFANTE", "category": "Animales" },
+  { "word": "COLOMBIA", "category": "Países" },
+  { "word": "ARGENTINA", "category": "Países" },
+  { "word": "LED ZEPPELIN", "category": "Bandas de Rock" },
+  { "word": "PINK FLOYD", "category": "Bandas de Rock" },
+  { "word": "HOMER SIMPSON", "category": "Personajes de Los Simpson" },
+  { "word": "BART SIMPSON", "category": "Personajes de Los Simpson" },
+  { "word": "LEON", "category": "Animales" },
+  { "word": "PANDA", "category": "Animales" },
+  { "word": "FRANCIA", "category": "Países" },
+  { "word": "ALEMANIA", "category": "Países" },
+  { "word": "QUEEN", "category": "Bandas de Rock" },
+  { "word": "METALLICA", "category": "Bandas de Rock" },
+  { "word": "MOE SZYSLAK", "category": "Personajes de Los Simpson" },
+  { "word": "MILHOUSE VAN HOUTEN", "category": "Personajes de Los Simpson" },
+  { "word": "JAGUAR", "category": "Animales" },
+  { "word": "CANGURO", "category": "Animales" },
+  { "word": "CANADA", "category": "Paises" },
+  { "word": "ITALIA", "category": "Paises" },
+  { "word": "NIRVANA", "category": "Bandas de Rock" }
+
 ]

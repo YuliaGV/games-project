@@ -1,8 +1,5 @@
 import {  styled, Typography } from "@mui/material"
 
-const word = "TEST WORD";
-const guessedLetters = ["T"];
-
 const HangmanWordContainer = styled('div')(() => ({
     display: "flex",
     gap: ".50em",
@@ -12,15 +9,22 @@ const HangmanWordContainer = styled('div')(() => ({
 
 const LetterContainer = styled('div')(() => ({
     borderBottom: "1px solid black",
-    maxWidth: "1.5em", 
+    width: "35px",
     textAlign: "center"
 }));
 
 
-function HangmanWord() {
+type HangmanWordProps = {
+    reveal?: boolean;
+    wordToGuess: string;
+    guessedLetters: string[];
+}
+
+
+function HangmanWord({ wordToGuess, guessedLetters, reveal=false }: HangmanWordProps) {
   return (
     <HangmanWordContainer>
-        {word.split("").map((letter, index) => (
+        {wordToGuess.split("").map((letter, index) => (
             letter === " " ? (
                 <Typography key={index}>&nbsp;</Typography>
             ) : (
@@ -28,7 +32,8 @@ function HangmanWord() {
                     <Typography variant="h3" component="h4">
                         <span
                             style={{
-                                visibility: guessedLetters.includes(letter) ? "visible" : "hidden"
+                                visibility: guessedLetters.includes(letter) || reveal ? "visible" : "hidden",
+                                color: !guessedLetters.includes(letter) ? "red" : "black"
                             }}
                         >
                             {letter}

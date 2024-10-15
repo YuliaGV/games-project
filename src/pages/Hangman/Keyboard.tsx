@@ -44,22 +44,44 @@ const KeyButton = styled(Button)<ButtonProps>(({ theme }) => ({
     color: theme.palette.getContrastText(purple[500]),
     backgroundColor: purple[500],
     '&:hover': {
-        backgroundColor: purple[700],
+        backgroundColor: purple[700]
+
     },
-    '&.inactive': {
-        backgroundColor: purple[300],
-        opacity: '0.3',
-     
-    },
+    '&.active': {
+        backgroundColor: purple[900],
+        color: theme.palette.getContrastText(purple[900]),
+    }
+    
 }));
+
+type KeyboardProps = {
+    disabled?: boolean,
+    activeLetters: string[],
+    inactiveLetters: string[],
+    addGuessedLetter: (letter: string) => void
+}
   
   
 
 
-function Keyboard() {
+function Keyboard({ disabled=false, activeLetters, inactiveLetters, addGuessedLetter }: KeyboardProps) {
   return (
     <KeyboardContainer>
-        {KEYS.map(key =>{ return <KeyButton key={key} variant="contained"  size="small" >{key}</KeyButton> })}
+        {KEYS.map(key => {
+            key = key.toUpperCase(); 
+            const isActive = activeLetters.includes(key);
+            const isInactive = inactiveLetters.includes(key);
+            return <KeyButton 
+                key={key} 
+                variant="contained"  
+                className={isActive ? "active"  : ""}
+                size="small" 
+                onClick={() => addGuessedLetter(key)}
+                disabled={isActive || isInactive || disabled}
+                >
+                {key}
+                </KeyButton> 
+            })}
     </KeyboardContainer>
   )
 }
