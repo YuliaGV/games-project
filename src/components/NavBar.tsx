@@ -117,6 +117,7 @@ const NavBar = () => {
                             textDecoration: location.pathname === page.link ? 'underline' : 'none',
                         }}
                     >
+                        
                     <Link to={page.link} style={{ textDecoration: 'none', color: 'inherit' }}>
                         <Typography textAlign="center">{page.name}</Typography>
                     </Link>

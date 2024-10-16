@@ -11,9 +11,14 @@ const HangmanContainer = styled(Container)(() => ({
   display: "flex",
   flexDirection: "column",
   gap: "2rem",
-  margin: "0 auto",
+  margin: "1rem auto",
   alignItems: "center"
   
+}));
+
+const ButtonContainer = styled('div')(() => ({
+  display: "flex",
+  gap: "1rem"
 }));
 
 function Hangman() {
@@ -36,6 +41,11 @@ function Hangman() {
     if(guessedLetters.includes(letter) || isLoser || isWinner) return;
     setGuessedLetters(currentLetters => [...currentLetters, letter])
   }, [guessedLetters, isLoser, isWinner])
+
+  const newGame = () => {
+    setWordToGuess(words[Math.floor(Math.random() * words.length)])
+    setGuessedLetters([])
+  }
 
 
 
@@ -60,14 +70,17 @@ function Hangman() {
       <Typography variant="h4" component="h4">
         Categoría: {wordToGuess.category}
       </Typography>
-      <Button variant="contained" color="primary" onClick={() => setWordToGuess(words[Math.floor(Math.random() * words.length)])} disabled={guessedLetters.length != 0}>
-        Cambiar palabra
-      </Button>
+       <ButtonContainer >
+        <Button variant="outlined" color="primary" onClick={newGame} >
+          Nueva palabra
+        </Button>
+      </ButtonContainer>
+
       <Typography variant="subtitle1" color="secondary">
         Intentos restantes: {6 - incorrectLetters.length}
       </Typography>
       <Typography variant="subtitle1" color="secondary">
-        {isLoser ? "Perdiste, refresca para intentar de nuevo" : isWinner ? "Ganaste, refresca para intentar de nuevo" : ""}
+        {isLoser ? "Perdiste, refresca o da click en 'Nueva palabra' para intentar de nuevo" : isWinner ? "Ganaste, refresca o da click en 'Nueva palabra' para intentar de nuevo" : ""}
       </Typography>
       <HangmanDrawing  numberOfGuesses = {incorrectLetters.length}   />
       <HangmanWord 
