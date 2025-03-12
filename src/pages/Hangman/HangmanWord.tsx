@@ -5,12 +5,17 @@ const HangmanWordContainer = styled('div')(() => ({
     gap: ".50em",
     fontWeight: "bold",
     textTransform: "uppercase",
+    flexWrap: "wrap", 
+    justifyContent: "center", 
 }));
 
 const LetterContainer = styled('div')(() => ({
     borderBottom: "1px solid black",
     width: "35px",
-    textAlign: "center"
+    textAlign: "center",
+    '@media (max-width: 600px)': { 
+        width: "25px",
+    }
 }));
 
 

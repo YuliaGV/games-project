@@ -1,4 +1,4 @@
-import { Button, Container, styled, Typography } from "@mui/material"
+import { Button, Container, FormControl, InputLabel, MenuItem, Select, styled, Typography } from "@mui/material"
 import { useCallback, useEffect, useState } from "react"
 import words from '../../wordList.json'
 import HangmanDrawing from "./HangmanDrawing";
@@ -26,6 +26,9 @@ function Hangman() {
   const [wordToGuess, setWordToGuess] = useState(() => {
     return words[Math.floor(Math.random() * words.length)]
   })
+
+  const [currentCategory, setCurrentCategory] = useState(wordToGuess.category) 
+
   const [guessedLetters, setGuessedLetters] = useState<string[]>([])
 
   const incorrectLetters = guessedLetters.filter(letter => !wordToGuess.word.includes(letter))
@@ -43,11 +46,10 @@ function Hangman() {
   }, [guessedLetters, isLoser, isWinner])
 
   const newGame = () => {
-    setWordToGuess(words[Math.floor(Math.random() * words.length)])
+    const wordsInCategory = words.filter(word => word.category === currentCategory)
+    setWordToGuess(wordsInCategory[Math.floor(Math.random() * wordsInCategory.length)])
     setGuessedLetters([])
   }
-
-
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -62,19 +64,37 @@ function Hangman() {
     return () => {
       document.removeEventListener("keypress", handler)
     }
-  }, [guessedLetters])
+  }, [addGuessedLetter, guessedLetters])
 
 
   return (
     <HangmanContainer>
-      <Typography variant="h4" component="h4">
-        Categoría: {wordToGuess.category}
-      </Typography>
-       <ButtonContainer >
+  
+     <FormControl variant="standard" sx={{ m: 1, minWidth: 240 }}>
+        <InputLabel htmlFor="categoryToGuess">Selecciona una categoría</InputLabel>
+        <Select
+          id="categoryToGuess"
+          value={currentCategory}
+          onChange={(e) => {
+            const category = e.target.value
+            setCurrentCategory(category)
+          }}
+        >
+          {[... new Set(words.map(word => word.category))].map(word => (
+            <MenuItem key={word} value={word}>{word}</MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+
+      <ButtonContainer >
         <Button variant="outlined" color="primary" onClick={newGame} >
-          Nueva palabra
+          Nuevo juego
         </Button>
       </ButtonContainer>
+
+      <Typography variant="h5" color="h5">
+       Categoría actual: {wordToGuess.category}
+      </Typography>
 
       <Typography variant="subtitle1" color="secondary">
         Intentos restantes: {6 - incorrectLetters.length}
@@ -94,7 +114,8 @@ function Hangman() {
         inactiveLetters={incorrectLetters}
         addGuessedLetter={addGuessedLetter}
       />
-
+    
+      
     </HangmanContainer>
   )
 }
